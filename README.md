@@ -7,6 +7,7 @@
 
 ### Run pipeline
 - `docker run -it varigene-pipeline`
+- The script will then prompt for a URL to get the raw data from
 
 ## To do
 - Setup docker image with these tools installed:
@@ -14,6 +15,11 @@
     - bwa
     - samtools
     - bcftools
+
+  Command to create the docker Image:
+  ```sh
+  docker build -t varigene-pipeline .
+  ```
 
 - Create 'varigene.sh' script doing the following steps:
     1. Download_dos_dados_raw(arquivo_NGS)
