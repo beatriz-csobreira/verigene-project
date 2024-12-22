@@ -42,7 +42,11 @@ samtools -Sb output_alinhamento.sam
 # Passo 5: Identificação de variantes
 samtools mpileup -f hg19.fa output_alinhamento.bam > output.pileup
 # .pileup file contains read depth and other info at each genomic position
-
-# Passo 6: Filtragem de variantes por qualidade
 bcftools call -mv -Ob output.bcf output.pileup
 bcftools view output.bcf > output.vcf
+
+# Passo 6: Filtragem de variantes por qualidade
+bcftools filter -i 'QUAL > 20' output.vcf -o output.filtered.vcf
+
+# Passo 7: Anotacao_de_variantes(ficheiro_vcf_filtrado)
+bcftools filter -i 'INFO/CLASSIFICATION="something"' output.filtered.vcf -o output.something.vcf
